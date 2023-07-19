@@ -1,23 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import CustomAuth from './components/CustomAuth'
+import BurgerMenu from './components/BurgerMenu'
+import FIleInput from './components/FileInput'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BurgerMenu />
+      <FIleInput />
+      <CustomAuth />
     </div>
   );
 }

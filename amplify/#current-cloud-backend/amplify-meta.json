@@ -1,0 +1,58 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-filestorageamplify-dev-161525-authRole",
+      "UnauthRoleArn": "arn:aws:iam::666073547644:role/amplify-filestorageamplify-dev-161525-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::666073547644:role/amplify-filestorageamplify-dev-161525-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-filestorageamplify-dev-161525-deployment",
+      "UnauthRoleName": "amplify-filestorageamplify-dev-161525-unauthRole",
+      "StackName": "amplify-filestorageamplify-dev-161525",
+      "StackId": "arn:aws:cloudformation:us-east-1:666073547644:stack/amplify-filestorageamplify-dev-161525/34f70310-0639-11ee-a85f-12d58788bdcd",
+      "AmplifyAppId": "d3nbubia0rklm"
+    }
+  },
+  "auth": {
+    "filestorageamplifydf2895a5": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-filestorageamplify-dev-161525-deployment/amplify-cfn-templates/auth/filestorageamplifydf2895a5-cloudformation-template.json",
+        "logicalId": "authfilestorageamplifydf2895a5"
+      },
+      "lastPushTimeStamp": "2023-06-08T20:22:51.585Z",
+      "output": {
+        "UserPoolId": "us-east-1_A2A68y3tj",
+        "AppClientIDWeb": "3kpifhncek6gjq9vk0vjj5cq4b",
+        "AppClientID": "3seh6uhcdmo42g4no8mrun3i3o",
+        "IdentityPoolId": "us-east-1:081a6c68-97bb-45d0-8f60-5eb5f92888f7",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:666073547644:userpool/us-east-1_A2A68y3tj",
+        "IdentityPoolName": "filestorageamplifydf2895a5_identitypool_df2895a5__dev",
+        "UserPoolName": "filestorageamplifydf2895a5_userpool_df2895a5"
+      },
+      "lastPushDirHash": "USB4QEPwpPnfsH6LApObtz13pTo="
+    }
+  }
+}
