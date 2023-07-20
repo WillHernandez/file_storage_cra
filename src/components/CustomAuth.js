@@ -6,6 +6,8 @@ import { useIdleTimer } from 'react-idle-timer'
 import Cookies from 'js-cookie'
 import signOutUtil from '../utils/signOut'
 import '@aws-amplify/ui-react/styles.css'
+import { setGlobalState } from '../state/state'
+import { useNavigate } from 'react-router-dom'
 axios.defaults.withCredentials = true
 Amplify.configure(awsExports)
 
@@ -13,8 +15,10 @@ Amplify.configure(awsExports)
 const url = "http://localhost:4000"
 
 export default function CustomAuth() {
-  const onIdle = () => { Auth.signOut() }
+  const onIdle = () => { signOutUtil() }
 	useIdleTimer({ onIdle, disabled: !Cookies.get('username'), timeout: 3600000 }) // 1hr timeout
+  const navigate = useNavigate()
+
 
   const services = {
     async handleSignUp(formData) {
@@ -46,6 +50,8 @@ export default function CustomAuth() {
         password
       });
 
+      setGlobalState('user', username)
+
       const dbData = {
         'username': cognitoRes.attributes.email,
         'sub': cognitoRes.attributes.sub,
@@ -56,15 +62,13 @@ export default function CustomAuth() {
 
       for(const prop in dbData) { Cookies.set(prop, dbData[prop]) }
 
-      const user = Cookies.get('username')
-      console.log(user);
-
       try {
         await axios(`${url}/api/login`) 
       } catch (e) {
         console.log(e);
       }
 
+      navigate('/profile')
 			return cognitoRes
     },
   };

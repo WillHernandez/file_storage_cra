@@ -1,13 +1,10 @@
-import { Navigate, Outlet } from "react-router-dom"
-import { useCookies } from 'react-cookie'
+import { Navigate } from 'react-router-dom'
 
-const ProtectedRoutes = () => {
-  const [cookies, get] = useCookies(['cookie-name']);
-	const isAuth = get('username')
-
-	return(
-		isAuth ? <Outlet /> : <Navigate to='/' />
-	)
+const ProtectedRoutes = ({user, children}) => {
+	if(!user) {
+		return <Navigate to='/' />
+	}
+	return children
 }
 
 export default ProtectedRoutes

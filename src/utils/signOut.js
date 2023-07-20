@@ -1,5 +1,7 @@
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
+import Cookies from "js-cookie";
+import { setGlobalState } from '../state/state';
 
 const signOutUtil = async () => {
   try {
@@ -7,6 +9,8 @@ const signOutUtil = async () => {
   } catch (error) {
     console.log('error signing out: ', error);
   }
+  setGlobalState('user', null)
+  Cookies.remove('username')
   return await Auth.signOut();
 }
 
