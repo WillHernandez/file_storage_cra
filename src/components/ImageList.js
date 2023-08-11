@@ -36,7 +36,7 @@ export default function MainImageListComponent () {
 // https://mui.com/material-ui/react-image-list/
 const ImageListComponent = ({images}) => {
 	return(
-		<div>
+		<div className='imagesContainer' style={{background: 'black'}}>
     	<Box sx={{ width: "90vw", height: '70vh', overflowY: 'scroll', margin: 'auto', background: "black" }}> {/* may have to tweak */}
       	<ImageList variant="masonry" cols={3} gap={8}>
         	{images && images.map((image, i) => (
