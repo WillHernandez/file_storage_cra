@@ -6,6 +6,7 @@
     "@aws-amplify/ui-react": "^5.0.0",
     "@aws-amplify/ui-react-core": "^2.1.23",
     "@aws-amplify/ui-react-storage": "^2.0.2",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@material/button": "^14.0.0",
@@ -45,7 +46,9 @@
       "not op_mini all"
     ],
     "development": [
-      "last 1 chrome version"
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ]
   }
 }

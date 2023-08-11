@@ -2,7 +2,7 @@ import React from 'react'
 import { MuiFileInput } from 'mui-file-input'
 import Button from '@mui/material/Button'
 import axios from 'axios'
-const url = "http://localhost:4000/api/bucket/upload"
+const backendUrl = "http://localhost:4000"
 
 const FileInput = () => {
   const [value, setValue] = React.useState(null)
@@ -22,10 +22,11 @@ const FileInput = () => {
       value.map(image => bodyFormData.append('file', image))
 
       try {
-        await axios.post(url, bodyFormData)
+        await axios.post(`${backendUrl}/api/bucket/upload`, bodyFormData)
         setMessage("Files uploaded to your folder successfully")
+        setValue(null)
       } catch(e) {
-        console.log({error: e});
+        setMessage(e)
       }
     }
   }
@@ -34,7 +35,7 @@ const FileInput = () => {
     <>
       <MuiFileInput className='fileInput' multiple value={value} onChange={handleChange} />
       <div>
-        <Button style={{backgroundColor:'#047D95'}} className='submitBtn' onClick={handleSubmit} variant="contained" size="large">Upload</Button>
+        <Button style={{backgroundColor:'#047D95'}} className='submitBtn' onClick={handleSubmit} variant="contained" size="large">Upload Files</Button>
         {message && <h1>{message}</h1>}
       </div>
     </>
