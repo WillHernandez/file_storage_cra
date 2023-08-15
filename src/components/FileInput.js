@@ -1,30 +1,38 @@
 import React from 'react'
+import { useState } from 'react'
 import { MuiFileInput } from 'mui-file-input'
 import Button from '@mui/material/Button'
+import { ProgressBar } from  'react-loader-spinner'
 import axios from 'axios'
 const backendUrl = "http://localhost:4000"
 
 const FileInput = () => {
-  const [value, setValue] = React.useState(null)
-  const [message, setMessage] = React.useState(undefined)
+  const [inputValue, setInputValue] = useState(null)
+  const [message, setMessage] = useState(undefined)
+  const [showProgress, setShowProgress] = useState(false)
 
-  const handleChange = newValue => {
-    setValue(newValue)
+  const handleInputChange = newValue => {
+    setInputValue(newValue)
+    // needs to stop progress bar upload action is canceled
+    if(inputValue === null) {
+      setShowProgress(false)
+    }
   }
 
-  const handleSubmit = async e => {
+  const handleUpload = async e => {
     e.preventDefault()
+    setShowProgress(true)
     var bodyFormData = new FormData()
 
-    if(!value || value.length < 1) {
+    if(!inputValue || inputValue.length < 1) {
       setMessage("must upload one file at minimum")
     } else {
-      value.map(image => bodyFormData.append('file', image))
+      inputValue.map(image => bodyFormData.append('file', image))
 
       try {
         await axios.post(`${backendUrl}/api/bucket/upload`, bodyFormData)
-        setMessage("Files uploaded to your folder successfully")
-        setValue(null)
+        setShowProgress(false)
+        setInputValue(null)
       } catch(e) {
         setMessage(e)
       }
@@ -33,10 +41,13 @@ const FileInput = () => {
 
   return(
     <>
-      <MuiFileInput className='fileInput' multiple value={value} onChange={handleChange} />
+      <div className="fileInput">
+        <MuiFileInput className='fileInput' multiple value={inputValue} onChange={handleInputChange} />
+          {message && <p>{message}</p>}
+        <ProgressBar visible={showProgress} borderColor='#047D95' />
+      </div>
       <div>
-        <Button style={{backgroundColor:'#047D95'}} className='submitBtn' onClick={handleSubmit} variant="contained" size="large">Upload Files</Button>
-        {message && <h1>{message}</h1>}
+        <Button style={{backgroundColor:'#047D95'}} className='submitBtn' onClick={handleUpload} variant="contained" size="large">Upload Files</Button>
       </div>
     </>
     )
