@@ -4,6 +4,7 @@ import axios from 'axios';
 import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import ModalImage from "react-modal-image";
 const backendUrl = 'http://localhost:4000'
 
 export default function MainImageListComponent () {
@@ -24,17 +25,22 @@ export default function MainImageListComponent () {
 const ImageListComponent = ({images}) => {
 	return(
 		<div className='imagesContainer' style={{background: 'black'}}>
-    	<Box sx={{ width: "90vw", height: '80vh', overflowY: 'scroll', margin: 'auto', background: "black" }}> {/* may have to tweak */}
-      	<ImageList variant="masonry" cols={3} gap={10}>
+    	<Box sx={{ height: '80vh', overflowY: 'scroll', margin: 'auto', background: "black" }}> {/* may have to tweak */}
+      	<ImageList variant="masonry" cols={4} gap={10}>
         	{images && images.map((image, i) => (
-          	<ImageListItem key={i}>
-            	<img
-              	src={`${image}?w=248&fit=crop&auto=format`}
-              	srcSet={image}
-								alt={image}
-              	loading="lazy"
-            	/>
-          	</ImageListItem>
+						<div>
+							<ModalImage small={image} medium={image}>
+          			<ImageListItem key={i}>
+            				<img
+											style={{width: 300, height:300}}
+              				src={`${image}?w=248&fit=crop&auto=format`}
+              				srcSet={image}
+											alt={image}
+              				loading="lazy"
+            				/>
+          			</ImageListItem>
+							</ModalImage>
+						</div>
         	))}
       	</ImageList>
     	</Box>

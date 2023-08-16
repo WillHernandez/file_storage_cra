@@ -2,10 +2,10 @@ import FileInput from './FileInput'
 import BurgerMenu from './BurgerMenu';
 import MainImageListComponent from './ImageList';
 
-const User = ({user}) => {
+const User = () => {
 	return(
 		<>
-			<BurgerMenu user={user}/>
+			<BurgerMenu />
 			<FileInput />
 			<MainImageListComponent />
 		</>

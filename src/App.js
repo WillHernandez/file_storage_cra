@@ -21,7 +21,7 @@ const App = () => {
 
         <Route path='/profile' element={
         <ProtectedRoutes user={newUser} userCookie={userCookie}>
-          <User user={newUser}/>
+          <User />
         </ProtectedRoutes>}/>
       </Routes>
     </Router>

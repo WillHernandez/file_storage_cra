@@ -1,7 +1,9 @@
 import { View, Menu, MenuItem, Divider } from '@aws-amplify/ui-react';
 import signOutUtil from '../utils/signOut';
+import Cookies from 'js-cookie';
+const user = Cookies.get('username')
 
-const BurgerMenu = ({user}) => {
+const BurgerMenu = () => {
   return (
   	<View width="4rem">
     	<Menu>
