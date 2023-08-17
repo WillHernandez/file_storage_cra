@@ -21,16 +21,17 @@ export default function MainImageListComponent () {
     	<Box sx={{ height: '90vh', overflowY: 'scroll', margin: 'auto', background: "black" }}>
       	<ImageList variant="masonry" cols={4} gap={10}>
         	{images && images.map((image, i) => (
+						// edit aws/s3/buckets/permission/cors to allow host access - implement DL btn. Change before production
 						<ModalImage key={i} small={image} medium={image} showRotate={true}>
-          		<ImageListItem >
-            			<img
-										style={{width: 300, height:300}}
-              			src={`${image}?w=248&fit=crop&auto=format`}
-              			srcSet={image}
-										alt={imagePlaceholder}
-              			loading="lazy"
-            			/>
-          		</ImageListItem>
+          			<ImageListItem >
+            				<img
+											style={{width: 300, height:300}}
+              				src={`${image}?w=248&fit=crop&auto=format`}
+              				srcSet={image}
+											alt={imagePlaceholder}
+              				loading="lazy"
+            				/>
+          			</ImageListItem>
 						</ModalImage>
         	))}
       	</ImageList>
