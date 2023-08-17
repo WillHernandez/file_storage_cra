@@ -9,7 +9,6 @@ const BurgerMenu = () => {
     	<Menu>
         <MenuItem isDisabled > {user} </MenuItem>
         <MenuItem onClick={() => {signOutUtil()}}> Sign Out </MenuItem>
-        <MenuItem onClick={() => alert('Download')}> Download </MenuItem>
         <Divider />
         <MenuItem isDisabled onClick={() => alert('Delete')}> Delete </MenuItem>
       </Menu>

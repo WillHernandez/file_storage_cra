@@ -12,10 +12,9 @@ axios.defaults.withCredentials = true // send cookies with each request
 Amplify.configure(awsExports)
 const backendUrl = 'http://localhost:4000'
 
-// https://ui.docs.amplify.aws/react/connected-components/authenticator/customization
 export default function CustomAuth() {
   const onIdle = () => { signOutUtil() }
-	useIdleTimer({ onIdle, disabled: !Cookies.get('username'), timeout: 3600000 }) // 1hr timeout
+	useIdleTimer({ onIdle, disabled: !Cookies.get('username'), timeout: 3600000 })
   const navigate = useNavigate()
 
   let globalPass
