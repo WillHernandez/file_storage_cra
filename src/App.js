@@ -16,7 +16,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={
         <MainRoutes user={newUser} userCookie={userCookie}>
-          <CustomAuth />
+          <CustomAuth/>
         </MainRoutes>}/>
 
         <Route path='/profile' element={

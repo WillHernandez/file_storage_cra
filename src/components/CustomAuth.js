@@ -67,7 +67,7 @@ export default function CustomAuth() {
   }
 
   return (
-    <Authenticator services={services} initialState="signIn">
+    <Authenticator className='authComponent' services={services} initialState="signIn">
       {() => <button onClick={signOutUtil}>Sign out</button>}
     </Authenticator>
   );

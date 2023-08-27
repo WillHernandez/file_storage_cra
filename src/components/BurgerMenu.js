@@ -8,9 +8,8 @@ const BurgerMenu = () => {
   	<View width="4rem">
     	<Menu>
         <MenuItem isDisabled > {user} </MenuItem>
-        <MenuItem onClick={() => {signOutUtil()}}> Sign Out </MenuItem>
         <Divider />
-        <MenuItem isDisabled onClick={() => alert('Delete')}> Delete </MenuItem>
+        <MenuItem onClick={() => {signOutUtil()}}> Sign Out </MenuItem>
       </Menu>
     </View>
   );

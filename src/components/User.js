@@ -1,15 +1,11 @@
 import FileInput from './FileInput'
 import BurgerMenu from './BurgerMenu';
-import MainImageListComponent from './ImageList';
 
-const User = () => {
-	return(
-		<>
-			<BurgerMenu />
-			<FileInput />
-			<MainImageListComponent />
-		</>
-	)
-}
+const User = () => (
+	<div className="userContainer" style={{display: "block"}}>
+		<BurgerMenu />
+		<FileInput />
+	</div>
+)
 
 export default User
