@@ -23,7 +23,7 @@ export default function MainImageListComponent ({ objects }) {
 const ImageComponent = ({ val }) => (
 	<ModalImage small={val} medium={val} showRotate={true} showDelete={true}>
 		<ImageListItem >
-				<img className='listItemImg'
+				<img
 					src={`${val}?w=248&fit=crop&auto=format`}
 					srcSet={val}
 					alt={imagePlaceholder}
