@@ -1,7 +1,9 @@
 import { Navigate } from 'react-router-dom'
+import Cookies from 'js-cookie';
 
-const ProtectedRoutes = ({user, userCookie, children}) => {
-	if(!user && !userCookie) {
+const ProtectedRoutes = ({ children }) => {
+	const user = Cookies.get('username')
+	if(!user) {
 		return <Navigate to='/' />
 	}
 	return children
