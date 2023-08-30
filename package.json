@@ -14,6 +14,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@will2code/react-modal-image": "^0.0.1",
     "amazon-cognito-identity-js": "^6.2.0",
     "aws-amplify": "^5.2.5",
     "axios": "^1.4.0",
@@ -24,7 +25,6 @@
     "react-hooks-global-state": "^2.1.0",
     "react-idle-timer": "^5.7.2",
     "react-loader-spinner": "^5.3.4",
-    "react-modal-image": "^2.6.0",
     "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"

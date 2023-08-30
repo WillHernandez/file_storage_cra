@@ -1,8 +1,7 @@
 import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-// import ModalImage from "react-modal-image";
-import ModalImage from '@will2code/react-modal-image'
+import ModalImage from '@will2code/react-modal-image' // Edited and published this npm package
 const imagePlaceholder = require('../static/image-placeholder-icon.png')
 
 // edit aws/s3/buckets/permission/cors to allow host access - implement DL btn. Change before production
