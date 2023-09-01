@@ -5,7 +5,7 @@ import Button from '@mui/material/Button'
 import { ProgressBar } from  'react-loader-spinner'
 import MainImageListComponent from './ImageList'
 import axios from 'axios'
-const backendUrl = 'https://neon-sundae-0c06f5.netlify.app'
+const backendUrl = 'willsfilestoragebackend.netlify.app'
 
 const FileInput = () => {
   const [inputValue, setInputValue] = useState(null)
