@@ -10,7 +10,7 @@ import { setGlobalState } from '../state/state'
 import { useNavigate } from 'react-router-dom'
 axios.defaults.withCredentials = true // send cookies with each request
 Amplify.configure(awsExports)
-const backendUrl = 'https://willsfilestoragebackend.netlify.app'
+const backendUrl = 'willsfilestoragebackend.netlify.app'
 
 export default function CustomAuth() {
   const onIdle = () => { signOutUtil() }
