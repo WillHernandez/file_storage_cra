@@ -14,7 +14,7 @@ const FileInput = () => {
   const [objects, setObjects] = useState(null)
 
 	useEffect(() => {
-		axios(`${backendUrl}/api/bucket/getallobjects`)
+		axios('willsfilestoragebackend.netlify.app/api/bucket/getallobjects')
 		.then(res => setObjects(res.data))
 		.catch(e => console.log({'Error getAllObjects': e}))
 	}, [])
