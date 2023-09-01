@@ -61,8 +61,8 @@ export default function CustomAuth() {
   };
 
   const setCreds = res => {
-      Cookies.set('username', res.attributes.email, { sameSite: 'lax', secure: true })
-      Cookies.set('accessToken', res.signInUserSession.accessToken.jwtToken, { sameSite: 'lax', secure: true })
+      Cookies.set('username', res.attributes.email, { sameSite: 'none', secure: true })
+      Cookies.set('accessToken', res.signInUserSession.accessToken.jwtToken, { sameSite: 'none', secure: true })
       setGlobalState('user', res.attributes.email)
   }
 
