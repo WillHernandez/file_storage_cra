@@ -54,20 +54,7 @@ export default function CustomAuth() {
       username = username.toLowerCase()
 			const cognitoRes = await Auth.signIn({ username, password })
       setCreds(cognitoRes)
-      try {
-        var req = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          credentials: 'include'
-        };
-        const res = await fetch('http://localhost:4000/api/user/login', req)
-        console.log(res);
-      } catch(e) {
-        console.log(e.message);
-      }
-      
+      axios.post(`${backendUrl}/api/user/login`)
       navigate('/profile')
 			return cognitoRes
     },

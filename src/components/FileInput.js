@@ -16,7 +16,7 @@ const FileInput = () => {
 	useEffect(() => {
 		axios(`${backendUrl}/api/bucket/getallobjects`)
 		.then(res => setObjects(res.data))
-		.catch(e => console.log(e))
+		.catch(e => console.log({'Error getAllObjects': e}))
 	}, [])
 
   const handleInputChange = newValue => {
