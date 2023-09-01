@@ -2,7 +2,7 @@ import { Auth } from 'aws-amplify';
 import axios from 'axios';
 import Cookies from "js-cookie";
 import { setGlobalState } from '../state/state';
-const backendUrl = 'http://localhost:4000'
+const backendUrl = 'https://neon-sundae-0c06f5.netlify.app'
 
 const signOutUtil = async () => {
   try {

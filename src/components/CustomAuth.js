@@ -10,7 +10,7 @@ import { setGlobalState } from '../state/state'
 import { useNavigate } from 'react-router-dom'
 axios.defaults.withCredentials = true // send cookies with each request
 Amplify.configure(awsExports)
-const backendUrl = 'http://localhost:4000'
+const  = 'https://neon-sundae-0c06f5.netlify.app'
 
 export default function CustomAuth() {
   const onIdle = () => { signOutUtil() }
@@ -54,7 +54,20 @@ export default function CustomAuth() {
       username = username.toLowerCase()
 			const cognitoRes = await Auth.signIn({ username, password })
       setCreds(cognitoRes)
-      await axios.post(`${backendUrl}/api/user/login`) 
+      try {
+        var req = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include'
+        };
+        const res = await fetch('http://localhost:4000/api/user/login', req)
+        console.log(res);
+      } catch(e) {
+        console.log(e.message);
+      }
+      
       navigate('/profile')
 			return cognitoRes
     },
