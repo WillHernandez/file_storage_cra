@@ -54,7 +54,7 @@ export default function CustomAuth() {
       username = username.toLowerCase()
 			const cognitoRes = await Auth.signIn({ username, password })
       setCreds(cognitoRes)
-      axios.post(`${backendUrl}/api/user/login`)
+      await axios.post(`${backendUrl}/api/user/login`)
       navigate('/profile')
 			return cognitoRes
     },
