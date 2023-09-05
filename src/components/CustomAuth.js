@@ -14,7 +14,7 @@ const backendUrl = 'willsfilestoragebackend.netlify.app'
 
 export default function CustomAuth() {
   const onIdle = () => { signOutUtil() }
-	useIdleTimer({ onIdle, disabled: !Cookies.get('username'), timeout: 3600000 })
+  useIdleTimer({ onIdle, disabled: !Cookies.get('username'), timeout: 3600000 })
   const navigate = useNavigate()
 
   let globalPass
@@ -41,29 +41,30 @@ export default function CustomAuth() {
       const confirmSignupRes = await Auth.confirmSignUp(username, code)
       const signinRes = await Auth.signIn(username, globalPass)
 
-      if(confirmSignupRes === "SUCCESS") {
+      if (confirmSignupRes === "SUCCESS") {
         setCreds(signinRes)
         await axios.post(`${backendUrl}/api/user/newuser`)
       }
       navigate('/profile')
-      return confirmSignupRes 
+      return confirmSignupRes
     },
-    
-		async handleSignIn(formData) {
+
+    async handleSignIn(formData) {
       let { username, password } = formData
       username = username.toLowerCase()
-			const cognitoRes = await Auth.signIn({ username, password })
+      const cognitoRes = await Auth.signIn({ username, password })
       setCreds(cognitoRes)
-      await axios.post(`${backendUrl}/api/user/login`)
+      const response = await axios.post(`${backendUrl}/api/user/login`)
+      console.log(response)
       navigate('/profile')
-			return cognitoRes
+      return cognitoRes
     },
   };
 
   const setCreds = res => {
-      Cookies.set('username', res.attributes.email, { sameSite: 'none', secure: true })
-      Cookies.set('accessToken', res.signInUserSession.accessToken.jwtToken, { sameSite: 'none', secure: true })
-      setGlobalState('user', res.attributes.email)
+    Cookies.set('username', res.attributes.email, { sameSite: 'none', secure: true })
+    Cookies.set('accessToken', res.signInUserSession.accessToken.jwtToken, { sameSite: 'none', secure: true })
+    setGlobalState('user', res.attributes.email)
   }
 
   return (
