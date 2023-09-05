@@ -2,7 +2,7 @@ import { Auth } from 'aws-amplify';
 import axios from 'axios';
 import Cookies from "js-cookie";
 import { setGlobalState } from '../state/state';
-const backendUrl = 'willsfilestoragebackend.netlify.app'
+const backendUrl = "https://file-storage-backend-original.onrender.com"
 
 const signOutUtil = async () => {
   try {

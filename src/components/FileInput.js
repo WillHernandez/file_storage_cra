@@ -5,7 +5,7 @@ import Button from '@mui/material/Button'
 import { ProgressBar } from  'react-loader-spinner'
 import MainImageListComponent from './ImageList'
 import axios from 'axios'
-const backendUrl = 'willsfilestoragebackend.netlify.app'
+const backendUrl = "https://file-storage-backend-original.onrender.com"
 
 const FileInput = () => {
   const [inputValue, setInputValue] = useState(null)
@@ -14,7 +14,7 @@ const FileInput = () => {
   const [objects, setObjects] = useState(null)
 
 	useEffect(() => {
-		axios('willsfilestoragebackend.netlify.app/api/bucket/getallobjects')
+		axios(`${backendUrl}/api/bucket/getallobjects`)
 		.then(res => setObjects(res.data))
 		.catch(e => console.log({'Error getAllObjects': e}))
 	}, [])
