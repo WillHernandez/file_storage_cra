@@ -6,6 +6,7 @@ import { ProgressBar } from  'react-loader-spinner'
 import MainImageListComponent from './ImageList'
 import axios from 'axios'
 const backendUrl = "https://file-storage-backend-original.onrender.com"
+// const backendUrl = "http://localhost:4000"
 
 const FileInput = () => {
   const [inputValue, setInputValue] = useState(null)
@@ -14,9 +15,15 @@ const FileInput = () => {
   const [objects, setObjects] = useState(null)
 
 	useEffect(() => {
-		axios(`${backendUrl}/api/bucket/getallobjects`)
-		.then(res => setObjects(res.data))
-		.catch(e => console.log({'Error getAllObjects': e}))
+    const getAllObjects = async () => {
+      try {
+        const res = await axios(`${backendUrl}/api/bucket/getallobjects`)
+        setObjects(res.data)
+      } catch (e) {
+        console.log({'Error getAllObjects': e});
+      }
+    }
+    getAllObjects()
 	}, [])
 
   const handleInputChange = newValue => {

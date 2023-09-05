@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 axios.defaults.withCredentials = true // send cookies with each request
 Amplify.configure(awsExports)
 const backendUrl = "https://file-storage-backend-original.onrender.com"
+// const backendUrl = "http://localhost:3000"
 
 export default function CustomAuth() {
   const onIdle = () => { signOutUtil() }
@@ -54,8 +55,7 @@ export default function CustomAuth() {
       username = username.toLowerCase()
       const cognitoRes = await Auth.signIn({ username, password })
       setCreds(cognitoRes)
-      const response = await axios.post(`${backendUrl}/api/user/login`)
-      console.log(response)
+      await axios.post(`${backendUrl}/api/user/login`)
       navigate('/profile')
       return cognitoRes
     },

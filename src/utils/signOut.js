@@ -3,6 +3,7 @@ import axios from 'axios';
 import Cookies from "js-cookie";
 import { setGlobalState } from '../state/state';
 const backendUrl = "https://file-storage-backend-original.onrender.com"
+// const backendUrl = "http://localhost:4000"
 
 const signOutUtil = async () => {
   try {
