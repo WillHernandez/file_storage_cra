@@ -1,8 +1,7 @@
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
 import { setGlobalState } from '../state/state';
-// const backendUrl = "https://file-storage-backend-original.onrender.com"
-const backendUrl = "http://localhost:4000"
+const backendUrl = "https://file-storage-backend-original.onrender.com"
 
 const signOutUtil = async () => {
   try {

@@ -8,8 +8,7 @@ import '@aws-amplify/ui-react/styles.css'
 import { setGlobalState } from '../state/state'
 import { useNavigate } from 'react-router-dom'
 Amplify.configure(awsExports)
-// const backendUrl = "https://file-storage-backend-original.onrender.com"
-const backendUrl = "http://localhost:4000"
+const backendUrl = "https://file-storage-backend-original.onrender.com"
 
 export default function CustomAuth() {
   const onIdle = () => { signOutUtil() }
