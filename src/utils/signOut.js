@@ -1,9 +1,8 @@
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
-import Cookies from "js-cookie";
 import { setGlobalState } from '../state/state';
-const backendUrl = "https://file-storage-backend-original.onrender.com"
-// const backendUrl = "http://localhost:4000"
+// const backendUrl = "https://file-storage-backend-original.onrender.com"
+const backendUrl = "http://localhost:4000"
 
 const signOutUtil = async () => {
   try {
@@ -12,7 +11,7 @@ const signOutUtil = async () => {
     console.log('error signing out: ', error);
   }
   setGlobalState('user', null)
-  Cookies.remove('username')
+  localStorage.clear()
   return await Auth.signOut();
 }
 

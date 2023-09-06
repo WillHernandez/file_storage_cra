@@ -5,8 +5,8 @@ import Button from '@mui/material/Button'
 import { ProgressBar } from  'react-loader-spinner'
 import MainImageListComponent from './ImageList'
 import axios from 'axios'
-const backendUrl = "https://file-storage-backend-original.onrender.com"
-// const backendUrl = "http://localhost:4000"
+// const backendUrl = "https://file-storage-backend-original.onrender.com"
+const backendUrl = "http://localhost:4000"
 
 const FileInput = () => {
   const [inputValue, setInputValue] = useState(null)
@@ -16,10 +16,15 @@ const FileInput = () => {
 
 	useEffect(() => {
     const getAllObjects = async () => {
+      const headers = {
+        headers: {
+          authorization: "Bearer " + localStorage.getItem('accessToken')
+        }
+      }
       try {
-        const res = await axios(`${backendUrl}/api/bucket/getallobjects`)
+        const res = await axios(`${backendUrl}/api/bucket/getallobjects`, headers)
         setObjects(res.data)
-      } catch (e) {
+      } catch(e) {
         console.log({'Error getAllObjects': e});
       }
     }
@@ -44,9 +49,14 @@ const FileInput = () => {
     } else {
       setMessage(undefined)
       inputValue.map(image => bodyFormData.append('file', image))
+      const headers = {
+        headers: {
+          authorization: "Bearer " + localStorage.getItem('accessToken')
+        }
+      }
 
       try {
-        const res = await axios.post(`${backendUrl}/api/bucket/upload`, bodyFormData)
+        const res = await axios.post(`${backendUrl}/api/bucket/upload`, bodyFormData, headers)
         setObjects(res.data)
         setShowProgress(false)
         setInputValue(null)

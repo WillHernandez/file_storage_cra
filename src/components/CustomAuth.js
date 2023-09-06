@@ -3,19 +3,17 @@ import axios from 'axios'
 import awsExports from '../aws-exports'
 import { Authenticator } from '@aws-amplify/ui-react'
 import { useIdleTimer } from 'react-idle-timer'
-import Cookies from 'js-cookie'
 import signOutUtil from '../utils/signOut'
 import '@aws-amplify/ui-react/styles.css'
 import { setGlobalState } from '../state/state'
 import { useNavigate } from 'react-router-dom'
-axios.defaults.withCredentials = true // send cookies with each request
 Amplify.configure(awsExports)
-const backendUrl = "https://file-storage-backend-original.onrender.com"
-// const backendUrl = "http://localhost:3000"
+// const backendUrl = "https://file-storage-backend-original.onrender.com"
+const backendUrl = "http://localhost:4000"
 
 export default function CustomAuth() {
   const onIdle = () => { signOutUtil() }
-  useIdleTimer({ onIdle, disabled: !Cookies.get('username'), timeout: 3600000 })
+  useIdleTimer({ onIdle, disabled: !localStorage.getItem('username'), timeout: 3600000 })
   const navigate = useNavigate()
 
   let globalPass
@@ -34,17 +32,23 @@ export default function CustomAuth() {
         autoSignIn: { enabled: true }
       })
     },
-
-    async handleConfirmSignUp(formData) {
+    
+    // test to make sure that a user is both confirmed and signed in with an approprite token returned
+    async handleConfirmSignUp(formData) { 
       let { username, code } = formData
       username = username.toLowerCase()
 
       const confirmSignupRes = await Auth.confirmSignUp(username, code)
       const signinRes = await Auth.signIn(username, globalPass)
-
+      const user = {
+        username: signinRes.attributes.email,
+        awsToken: signinRes.signInUserSession.accessToken
+      }
       if (confirmSignupRes === "SUCCESS") {
-        setCreds(signinRes)
-        await axios.post(`${backendUrl}/api/user/newuser`)
+        await axios.post(`${backendUrl}/api/user/newuser`, user)
+        const accessToken = await axios.post(`${backendUrl}/api/user/login`, user)
+        user.accessToken = accessToken.data
+        setCreds(user)
       }
       navigate('/profile')
       return confirmSignupRes
@@ -54,17 +58,22 @@ export default function CustomAuth() {
       let { username, password } = formData
       username = username.toLowerCase()
       const cognitoRes = await Auth.signIn({ username, password })
-      setCreds(cognitoRes)
-      await axios.post(`${backendUrl}/api/user/login`)
+      const user = {
+        username: cognitoRes.attributes.email,
+        awsToken: cognitoRes.signInUserSession.accessToken.jwtToken
+      }
+      const accessToken = await axios.post(`${backendUrl}/api/user/login`, user)
+      user.accessToken = accessToken.data
+      setCreds(user)
       navigate('/profile')
       return cognitoRes
     },
   };
 
   const setCreds = res => {
-    Cookies.set('username', res.attributes.email, { sameSite: 'none', secure: true })
-    Cookies.set('accessToken', res.signInUserSession.accessToken.jwtToken, { sameSite: 'none', secure: true })
-    setGlobalState('user', res.attributes.email)
+    localStorage.setItem('username', res.username)
+    localStorage.setItem('accessToken', res.accessToken)
+    setGlobalState('user', res.username)
   }
 
   return (
